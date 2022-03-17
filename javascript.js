@@ -29,36 +29,56 @@ function computerPlay(){
 
 function playRound(playerSelection, computerSelection){
     let playerSelectionFix = playerSelection.toLowerCase()
-    console.log(`Player: ${playerSelectionFix}. Computer: ${computerSelection}`)
+
+    const div = document.querySelector(".comparison")
+    div.textContent = `Player: ${playerSelectionFix}. Computer: ${computerSelection}`;
+
+    const score =document.querySelector(".score")
+    score.textContent = `Player Score: ${playerScore}. Computer Score: ${computerScore}`;
+
+
     if (playerSelectionFix === computerSelection){
-        console.log("It's a tie!")
+        const div2 = document.querySelector(".result")
+        div2.textContent ="It's a tie!";
         return "tie"
 
     } else if (playerSelectionFix==="rock"&&computerSelection==="scissor"){
-        console.log("Player won!")
+        const div2 = document.querySelector(".result")
+
+        div2.textContent ="Player won!"
         return "player"
     } else if (playerSelectionFix==="rock"&&computerSelection==="paper"){
-        console.log("Computer won!")
+        const div2 = document.querySelector(".result")
+
+        div2.textContent ="Computer won!"
         return "computer"
 
     }else if (playerSelectionFix==="paper"&&computerSelection==="rock"){
-        console.log("Player won!")
+        const div2 = document.querySelector(".result")
+
+        div2.textContent ="Player won!"
         return "player"
 
     } else if (playerSelectionFix==="paper"&&computerSelection==="scissor"){
-        console.log("Computer won!")
+        const div2 = document.querySelector(".result")
+
+        div2.textContent ="Computer won!"
         return "computer"
 
     }else if (playerSelectionFix==="scissor"&&computerSelection==="paper"){
-        console.log("Player won!")
+        const div2 = document.querySelector(".result")
+
+        div2.textContent ="Player won!"
         return "player"
 
     } else if (playerSelectionFix==="scissor"&&computerSelection==="rock"){
-        console.log("Computer won!")
+        const div2 = document.querySelector(".result")
+
+        div2.textContent ="Computer won!"
         return "computer"
 
     } else{
-        console.log("idk")
+        div2.textContent ="idk"
     }
 }
 
@@ -81,25 +101,100 @@ function game(){
      let computerScore=0;
      console.log(`playerScore: ${playerScore} computerScore: ${computerScore} `)
 
+     /*
      for (let i=1; i <= 5; i++){
-         let playerSelection = prompt(`game number ${i} \ntype rock, paper, or scissor`)
-         let result=playRound(playerSelection, computerPlay())
-         if (result==="player"){
-             playerScore++;
-         }else if (result==="computer"){
-            computerScore++;
-        }
-        console.log(`playerScore: ${playerScore} computerScore: ${computerScore} `)
+                 */
+
+    let playerSelection = prompt("game number ${i} \ntype rock, paper, or scissor");
+    let result=playRound(playerSelection, computerPlay());
+    if (result==="player"){
+        playerScore++;
+    }else if (result==="computer"){
+    computerScore++;
+    }
+    console.log(`playerScore: ${playerScore} computerScore: ${computerScore} `)
+        /*
      }
+     */
+
      console.log("game over")
      if (playerScore > computerScore){
-         console.log("player wins the game!")
+         console.log("player wins the game!");
+     }else if (playerScore === computerScore){
+        console.log("Nobody wins the game!");
+
      }else{
-        console.log("computer wins the game!")
-
+        console.log("computer wins the game!");
      }
-
-
 }
 
-game()
+function whoGetScore(string){
+    if (string==="player"){
+        playerScore++;
+    }else if (string==="computer"){
+        computerScore++;
+    }
+}
+
+function whoWon(){
+    const winner =document.querySelector(".winner");
+
+    if (playerScore>=5){
+        winner.textContent ="Player is the winner!"
+    } else if (computerScore>=5){
+        winner.textContent ="Computer is the winner!"
+    }
+}
+
+const btn =document.querySelector("#rock");
+const btn2 =document.querySelector("#paper");
+const btn3 =document.querySelector("#scissor");
+let playerScore=0;
+let computerScore=0;
+let result="yo";
+
+const body = document.querySelector("body")
+
+
+const score = document.createElement("div");
+score.classList.add("score")
+score.textContent = `Player Score: ${playerScore}. Computer Score: ${computerScore}`;
+body.insertBefore(score, btn);
+
+
+btn.addEventListener("click",()=>{
+    result=playRound("rock", computerPlay())
+    whoGetScore(result);
+    whoWon();
+});
+
+btn2.addEventListener("click",()=>{
+    result=playRound("paper", computerPlay())
+    whoGetScore(result);
+    whoWon();
+
+});
+
+btn3.addEventListener("click",()=>{
+    result=playRound("scissor", computerPlay())
+    whoGetScore(result);
+    whoWon();
+
+});
+
+
+const div = document.createElement("div");
+div.classList.add("comparison")
+div.textContent = `Player: none. Computer: none`;
+
+const div2 = document.createElement("div");
+div2.classList.add("result")
+div2.textContent = ``;
+
+const div3 = document.createElement("div");
+div3.classList.add("winner")
+div3.textContent = ``;
+
+body.appendChild(div);
+body.appendChild(div2);
+body.appendChild(div3);
