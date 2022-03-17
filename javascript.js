@@ -33,9 +33,6 @@ function playRound(playerSelection, computerSelection){
     const div = document.querySelector(".comparison")
     div.textContent = `Player: ${playerSelectionFix}. Computer: ${computerSelection}`;
 
-    const score =document.querySelector(".score")
-    score.textContent = `Player Score: ${playerScore}. Computer Score: ${computerScore}`;
-
 
     if (playerSelectionFix === computerSelection){
         const div2 = document.querySelector(".result")
@@ -95,15 +92,12 @@ Remember loops? This is a great opportunity to use one to play those five rounds
 //create a loop that runs 5x
 //prompt user to input
 //invoke function playRound and store results
-
+/*
 function game(){
      let playerScore=0;
      let computerScore=0;
      console.log(`playerScore: ${playerScore} computerScore: ${computerScore} `)
 
-     /*
-     for (let i=1; i <= 5; i++){
-                 */
 
     let playerSelection = prompt("game number ${i} \ntype rock, paper, or scissor");
     let result=playRound(playerSelection, computerPlay());
@@ -113,9 +107,6 @@ function game(){
     computerScore++;
     }
     console.log(`playerScore: ${playerScore} computerScore: ${computerScore} `)
-        /*
-     }
-     */
 
      console.log("game over")
      if (playerScore > computerScore){
@@ -127,6 +118,7 @@ function game(){
         console.log("computer wins the game!");
      }
 }
+*/
 
 function whoGetScore(string){
     if (string==="player"){
@@ -134,6 +126,9 @@ function whoGetScore(string){
     }else if (string==="computer"){
         computerScore++;
     }
+
+    const score =document.querySelector(".score")
+    score.textContent = `Player Score: ${playerScore}. Computer Score: ${computerScore}`;
 }
 
 function whoWon(){
@@ -159,7 +154,9 @@ const body = document.querySelector("body")
 const score = document.createElement("div");
 score.classList.add("score")
 score.textContent = `Player Score: ${playerScore}. Computer Score: ${computerScore}`;
-body.insertBefore(score, btn);
+
+const what= document.querySelector(".buttons");
+body.insertBefore(score, what);
 
 
 btn.addEventListener("click",()=>{
