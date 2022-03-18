@@ -1,8 +1,4 @@
-/*
-function computerPlay that will randomly return either rock, paper, or scissors
-*/
-//store var from generate random number between 0 and 2
-//use var on switch statement to determine computer choice and return that value
+
 function computerPlay(){
     let number = Math.floor(Math.random()*3) 
     switch(number){
@@ -17,121 +13,111 @@ function computerPlay(){
     }
 }
 
-/*
--function that plays a single round of rock paper scissors
--parameters of playerSelection and ComputerSelection with declare winner:"You Lose! Paper beats Rock"
--case insensitive
-*/
-
-//playerSelection to lower case in order to compare to computerSelection properly
-//if else statement to include all possible scenarios
-
-
 function playRound(playerSelection, computerSelection){
     let playerSelectionFix = playerSelection.toLowerCase()
 
-    const div = document.querySelector(".comparison")
-    div.textContent = `Player: ${playerSelectionFix}. Computer: ${computerSelection}`;
+    const div6 = document.querySelector(".comparison")
+    div6.textContent = `Player: ${playerSelectionFix}. Computer: ${computerSelection}`;
+
+    switch(playerSelection){
+        case "rock":
+            content2.src = "./img/rock.png"
+            break;
+        case "paper":
+            content2.src = "./img/paper.png"
+            break;
+        case "scissor":
+            content2.src = "./img/scissor.png"
+            break;
+        default:
+            content2.src = "./img/blank.png"
+    }
+
+    switch(computerSelection){
+        case "rock":
+            content6.src = "./img/rock.png"
+            break;
+        case "paper":
+            content6.src = "./img/paper.png"
+            break;
+        case "scissor":
+            content6.src = "./img/scissor.png"
+            break;
+        default:
+            content6.src = "./img/blank.png"
+    }
 
 
     if (playerSelectionFix === computerSelection){
-        const div2 = document.querySelector(".result")
-        div2.textContent ="It's a tie!";
+        const div5 = document.querySelector(".result")
+        content2.style.border = "2px solid black";
+        content6.style.border = "2px solid black";
+        div5.textContent ="It's a tie!";
         return "tie"
 
     } else if (playerSelectionFix==="rock"&&computerSelection==="scissor"){
-        const div2 = document.querySelector(".result")
+        const div5 = document.querySelector(".result")
+        content2.style.border = "2px solid green";
+        content6.style.border = "2px solid red";
 
-        div2.textContent ="Player won!"
+        div5.textContent ="Player won!"
         return "player"
     } else if (playerSelectionFix==="rock"&&computerSelection==="paper"){
-        const div2 = document.querySelector(".result")
-
-        div2.textContent ="Computer won!"
+        const div5 = document.querySelector(".result")
+        content6.style.border = "2px solid green";
+        content2.style.border = "2px solid red";
+        div5.textContent ="Computer won!"
         return "computer"
 
     }else if (playerSelectionFix==="paper"&&computerSelection==="rock"){
-        const div2 = document.querySelector(".result")
-
-        div2.textContent ="Player won!"
+        const div5 = document.querySelector(".result")
+        content2.style.border = "2px solid green";
+        content6.style.border = "2px solid red";
+        div5.textContent ="Player won!"
         return "player"
 
     } else if (playerSelectionFix==="paper"&&computerSelection==="scissor"){
-        const div2 = document.querySelector(".result")
-
-        div2.textContent ="Computer won!"
+        const div5 = document.querySelector(".result")
+        content6.style.border = "2px solid green";
+        content2.style.border = "2px solid red";
+        div5.textContent ="Computer won!"
         return "computer"
 
     }else if (playerSelectionFix==="scissor"&&computerSelection==="paper"){
-        const div2 = document.querySelector(".result")
-
-        div2.textContent ="Player won!"
+        const div5 = document.querySelector(".result")
+        content2.style.border = "2px solid green";
+        content6.style.border = "2px solid red";
+        div5.textContent ="Player won!"
         return "player"
 
     } else if (playerSelectionFix==="scissor"&&computerSelection==="rock"){
-        const div2 = document.querySelector(".result")
-
-        div2.textContent ="Computer won!"
+        const div5 = document.querySelector(".result")
+        content6.style.border = "2px solid green";
+        content2.style.border = "2px solid red";
+        div5.textContent ="Computer won!"
         return "computer"
 
     } else{
-        div2.textContent ="idk"
+        div5.textContent ="idk"
     }
 }
 
-
-
-/*
-Write a NEW function called game(). 
-Call the playRound function inside of this one to play a 5 round game that keeps score and reports a winner or loser at the end.
-Remember loops? This is a great opportunity to use one to play those five rounds:
-*/
-
-//create a function called game()
-//create two vars to track player and computer score
-//create a loop that runs 5x
-//prompt user to input
-//invoke function playRound and store results
-/*
-function game(){
-     let playerScore=0;
-     let computerScore=0;
-     console.log(`playerScore: ${playerScore} computerScore: ${computerScore} `)
-
-
-    let playerSelection = prompt("game number ${i} \ntype rock, paper, or scissor");
-    let result=playRound(playerSelection, computerPlay());
-    if (result==="player"){
-        playerScore++;
-    }else if (result==="computer"){
-    computerScore++;
-    }
-    console.log(`playerScore: ${playerScore} computerScore: ${computerScore} `)
-
-     console.log("game over")
-     if (playerScore > computerScore){
-         console.log("player wins the game!");
-     }else if (playerScore === computerScore){
-        console.log("Nobody wins the game!");
-
-     }else{
-        console.log("computer wins the game!");
-     }
-}
-*/
-
-function whoGetScore(string){
+function addScore(string){
     if (string==="player"){
         playerScore++;
     }else if (string==="computer"){
         computerScore++;
     }
 
-    const score =document.querySelector(".score")
-    score.textContent = `Player Score: ${playerScore}. Computer Score: ${computerScore}`;
+    const score1 =document.querySelector(".score1")
+    score1.textContent = `Player Score: ${playerScore}`;
+
+    const score2 =document.querySelector(".score2")
+    score2.textContent = `Computer Score: ${computerScore}`;
+    
 }
 
-function whoWon(){
+function checkWinner(){
     const winner =document.querySelector(".winner");
 
     if (playerScore>=5){
@@ -150,48 +136,107 @@ let result="yo";
 
 const body = document.querySelector("body")
 
+const buttons = document.querySelector(".buttons")
 
-const score = document.createElement("div");
-score.classList.add("score")
-score.textContent = `Player Score: ${playerScore}. Computer Score: ${computerScore}`;
 
-const what= document.querySelector(".buttons");
-body.insertBefore(score, what);
 
 
 btn.addEventListener("click",()=>{
     result=playRound("rock", computerPlay())
-    whoGetScore(result);
-    whoWon();
+    addScore(result);
+    checkWinner();
 });
 
 btn2.addEventListener("click",()=>{
     result=playRound("paper", computerPlay())
-    whoGetScore(result);
-    whoWon();
+    addScore(result);
+    checkWinner();
 
 });
 
 btn3.addEventListener("click",()=>{
     result=playRound("scissor", computerPlay())
-    whoGetScore(result);
-    whoWon();
+    addScore(result);
+    checkWinner();
 
 });
+const div1 = document.createElement("h1");
+div1.style.fontFamily = "Arial"
+div1.textContent = "ROCK PAPER SCISSOR";
+body.insertBefore(div1, buttons);
 
-
-const div = document.createElement("div");
-div.classList.add("comparison")
-div.textContent = `Player: none. Computer: none`;
 
 const div2 = document.createElement("div");
-div2.classList.add("result")
-div2.textContent = ``;
+div2.textContent = "Pick your choice:";
+body.insertBefore(div2, buttons);
 
-const div3 = document.createElement("div");
-div3.classList.add("winner")
-div3.textContent = ``;
+const div4 = document.createElement("div");
+div4.style.cssText = "display:flex; gap: 50px;"
+body.appendChild(div4);
 
-body.appendChild(div);
-body.appendChild(div2);
-body.appendChild(div3);
+
+    const innerDiv1 = document.createElement("div");
+    innerDiv1.style.cssText = "display:flex; flex-direction:column"
+    div4.appendChild(innerDiv1);
+
+        const content1 = document.createElement("div");
+        content1.textContent="PLAYER";
+        innerDiv1.appendChild(content1);
+
+        const content2 = document.createElement("img");
+        content2.src = "./img/blank.png"            
+        content2.style.cssText="transform: rotate(90deg);border: 2px solid black; border-radius: 25px; height: 160px; width:160px";
+        innerDiv1.appendChild(content2);
+
+        const content3 = document.createElement("div");
+        content3.classList.add("score1")
+        content3.textContent = `Score: ${playerScore}`;
+        innerDiv1.appendChild(content3);
+
+
+    const innerDiv2 = document.createElement("div");
+    innerDiv2.style.cssText = "display:flex; flex-direction:column; justify-content:center; align-items:center;"
+    div4.appendChild(innerDiv2);
+
+        const content4 = document.createElement("div");
+        content4.textContent="Game #/#";
+        innerDiv2.appendChild(content4);
+
+
+    const innerDiv3 = document.createElement("div");
+    innerDiv3.style.cssText = "display:flex; flex-direction:column;align-items:flex-end;"
+    div4.appendChild(innerDiv3);
+
+        const content5 = document.createElement("div");
+        content5.textContent="COMPUTER";
+        innerDiv3.appendChild(content5);
+
+        const content6 = document.createElement("img");
+        content6.src="./img/blank.png";
+        content6.style.cssText="transform: rotate(-90deg);border: 2px solid black; border-radius: 25px; height: 160px; width:160px";
+        innerDiv3.appendChild(content6);
+
+        const content7 = document.createElement("div");
+        content7.classList.add("score2")
+        content7.textContent = `Score: ${computerScore}`;
+        innerDiv3.appendChild(content7);
+
+
+
+const div5 = document.createElement("div");
+div5.classList.add("result")
+div5.textContent = ``;
+
+const div6 = document.createElement("div");
+div6.classList.add("comparison")
+div6.textContent = `Player: none. Computer: none`;
+
+
+
+const div7 = document.createElement("div");
+div7.classList.add("winner")
+div7.textContent = ``;
+
+body.appendChild(div5);
+body.appendChild(div6);
+body.appendChild(div7);
